@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe | Curriculum Vitae</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2d2d2d;
+            background-color: #f5f7fa;
+            line-height: 1.6;
+        }
+        .container {
+            width: 85%;
+            max-width: 900px;
+            margin: 30px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #007BFF;
+            margin-bottom: 30px;
+        }
+        .header .profile-image {
+            flex-shrink: 0;
+        }
+        .header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #007BFF;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+        .header img:hover {
+            transform: scale(1.05);
+        }
+        .header .info {
+            flex-grow: 1;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #007BFF;
+            font-weight: 600;
+        }
+        .header p {
+            margin: 4px 0;
+            font-size: 0.95em;
+            color: #4a4a4a;
+        }
+        .header p a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .header p a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h2 {
+            color: #007BFF;
+            font-size: 1.4em;
+            font-weight: 500;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .section ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .section ul li:before {
+            content: "•";
+            color: #007BFF;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+        .job, .education, .project {
+            margin-bottom: 20px;
+        }
+        .job h3, .education h3, .project h3 {
+            margin: 0;
+            font-size: 1.15em;
+            color: #2d2d2d;
+            font-weight: 500;
+        }
+        .job p, .education p, .project p {
+            margin: 6px 0;
+            color: #5a5a5a;
+            font-size: 0.95em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        .skill {
+            background: #e9f1ff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #2d2d2d;
+            transition: background 0.3s ease;
+        }
+        .skill:hover {
+            background: #d1e3ff;
+        }
+        @media print {
+            .container {
+                width: 100%;
+                margin: 0;
+                padding: 15px;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            .header img {
+                display: none;
+            }
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .header img {
+                width: 80px;
+                height: 80px;
+            }
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="profile-image">
+            <img th:src="@{/img/photos/unsplash-1.jpg}"  alt="Profile Image" />
+        </div>
+        <div class="info">
+            <h1>Ear Bunsong</h1>
+            <p>bunsong601@gmail.com</p>
+            <p>+1 (123) 456-7890</p>
+            <p><a href="https://linkedin.com/in/johndoe">linkedin.com/in/johndoe</a></p>
+            <p>Phnom Penh</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Professional Summary</h2>
+        <p>
+            Experienced software engineer with over 5 years of expertise in developing robust web applications using Java, Spring Boot, and modern front-end technologies. Passionate about delivering scalable solutions and optimizing performance.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Work Experience</h2>
+        <div class="job">
+            <h3>Software Engineer</h3>
+            <p>Tech Corp, New York, NY</p>
+            <p>Jan 2020 - Present</p>
+            <ul>
+                <li>Developed and maintained web applications using Spring Boot and Thymeleaf.</li>
+                <li>Led a team of 3 developers in agile sprints.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <div class="education">
+            <h3>Bachelor of Science in Computer Science</h3>
+            <p>University of Example, New York, NY</p>
+            <p>Sep 2015 - May 2019</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill">Java</div>
+            <div class="skill">Spring Boot</div>
+            <div class="skill">Thymeleaf</div>
+            <div class="skill">MySQL</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">HTML/CSS</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>E-Commerce Platform</h3>
+            <p>
+                Built a full-stack e-commerce application using Spring Boot, Thymeleaf, and MySQL, featuring user authentication, product catalog, and payment integration.
+            </p>
+            <p>Technologies: Java, Spring Boot, Thymeleaf, MySQL</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
