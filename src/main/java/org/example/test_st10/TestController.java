@@ -9,4 +9,8 @@ public class TestController {
     public String test() {
         return "Hello bunsong ST10";
     }
+
+    public static void main(String[] args) {
+
+    }
 }
