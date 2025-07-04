@@ -2,14 +2,18 @@ package org.example.test_st10.controller;
 
 import org.example.test_st10.model.Product;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/products")
 public class ProductController {
 
-    @GetMapping("/api/products/all")
+    @GetMapping("/all")
     public List<Product> getProducts() {
         return List.of(
                new Product(1,"Apple", 1000, "Fresh and juicy apples"),
@@ -19,4 +23,13 @@ public class ProductController {
 
         );
     }
+    @GetMapping("/{id}")
+    public Optional<Product> getProductById(@PathVariable int id) {
+        return getProducts().stream()
+                .filter(product -> product.id() == id)
+                .findFirst();
+    }
+
+
+    public record Product(int id, String name, int price, String description) {}
 }
