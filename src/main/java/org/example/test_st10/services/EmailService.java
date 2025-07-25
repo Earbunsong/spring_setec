@@ -1,4 +1,4 @@
-package org.example.test_st10.service;
+package org.example.test_st10.services;
 
 import org.example.test_st10.interfaces.MessageService;
 import org.springframework.stereotype.Service;
