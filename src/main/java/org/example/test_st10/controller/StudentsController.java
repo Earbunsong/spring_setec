@@ -1,9 +1,9 @@
 package org.example.test_st10.controller;
 
+import org.example.test_st10.exception.StudentNotFoundException;
 import org.example.test_st10.model.Students;
 import org.example.test_st10.services.StudentsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +23,8 @@ public class StudentsController {
 
     @GetMapping("/{id}")
     public Students getById(@PathVariable Long id) {
-        return studentService.getById(id).orElse(null);
+        return studentService.getById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with ID: " + id));
     }
 
     @PostMapping
