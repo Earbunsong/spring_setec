@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head">
+</head>
+<body>
+<nav th:replace="fragments/layout :: navbar"></nav>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h4><i class="fas fa-user-edit"></i> Edit Profile</h4>
+        </div>
+        <div class="card-body">
+          <form id="profileForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName">
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName">
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="/user/dashboard" class="btn btn-secondary">Cancel</a>
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i> Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Load and save profile
+  async function loadProfile() {
+    try {
+      const response = await fetch('/api/user/profile');
+      const profile = await response.json();
+
+      document.getElementById('username').value = profile.username;
+      document.getElementById('email').value = profile.email;
+      document.getElementById('firstName').value = profile.firstName || '';
+      document.getElementById('lastName').value = profile.lastName || '';
+    } catch (error) {
+      console.error('Error loading profile:', error);
+    }
+  }
+
+  document.getElementById('profileForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = {
+      email: document.getElementById('email').value,
+      firstName: document.getElementById('firstName').value,
+      lastName: document.getElementById('lastName').value
+    };
+
+    try {
+      const response = await fetch('/api/user/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+      alert(result.message);
+
+      if (result.status === 'success') {
+        window.location.href = '/user/dashboard';
+      }
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      alert('Error saving profile');
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', loadProfile);
+</script>
+</body>
+</html>
